@@ -1,13 +1,10 @@
-FROM judge0/compilers:1.4.0 AS production
+FROM ghcr.io/dimiplan/compilers:latest AS production
 
-ENV JUDGE0_HOMEPAGE "https://judge0.com"
-LABEL homepage=$JUDGE0_HOMEPAGE
+ENV JUDGE0_FORK_SOURCE_CODE "https://github.com/dimiplan/judge0"
+LABEL source_code=$JUDGE0_FORK_SOURCE_CODE
 
-ENV JUDGE0_SOURCE_CODE "https://github.com/judge0/judge0"
-LABEL source_code=$JUDGE0_SOURCE_CODE
-
-ENV JUDGE0_MAINTAINER "Herman Zvonimir Došilović <hermanz.dosilovic@gmail.com>"
-LABEL maintainer=$JUDGE0_MAINTAINER
+ENV JUDGE0_FORK_MAINTAINER "dimiplan <admin@dimiplan.com>"
+LABEL maintainer=$JUDGE0_FORK_MAINTAINER
 
 ENV PATH "/usr/local/ruby-2.7.0/bin:/opt/.gem/bin:$PATH"
 ENV GEM_HOME "/opt/.gem/"
