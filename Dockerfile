@@ -1,13 +1,13 @@
-FROM ghcr.io/dimiplan/compilers:latest AS production
+FROM --platform=linux/amd64 ghcr.io/dimiplan/compilers:latest AS production
 
-ENV JUDGE0_FORK_SOURCE_CODE "https://github.com/dimiplan/judge0"
+ENV JUDGE0_FORK_SOURCE_CODE="https://github.com/dimiplan/judge0"
 LABEL source_code=$JUDGE0_FORK_SOURCE_CODE
 
-ENV JUDGE0_FORK_MAINTAINER "dimiplan <admin@dimiplan.com>"
+ENV JUDGE0_FORK_MAINTAINER="dimiplan <admin@dimiplan.com>"
 LABEL maintainer=$JUDGE0_FORK_MAINTAINER
 
-ENV PATH "/usr/local/ruby-2.7.0/bin:/opt/.gem/bin:$PATH"
-ENV GEM_HOME "/opt/.gem/"
+ENV PATH="/usr/local/ruby-3.4.7/bin:/usr/local/bun-1.3.1/bin:/opt/.gem/bin:$PATH"
+ENV GEM_HOME="/opt/.gem/"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -16,8 +16,8 @@ RUN apt-get update && \
       sudo && \
     rm -rf /var/lib/apt/lists/* && \
     echo "gem: --no-document" > /root/.gemrc && \
-    gem install bundler:2.1.4 && \
-    npm install -g --unsafe-perm aglio@2.3.0
+    gem install bundler && \
+    bun install -g --unsafe-perm aglio@2.3.0
 
 EXPOSE 2358
 
@@ -40,9 +40,9 @@ RUN useradd -u 1000 -m -r judge0 && \
 
 USER judge0
 
-ENV JUDGE0_VERSION "1.13.1"
+ENV JUDGE0_VERSION="1.13.1"
 LABEL version=$JUDGE0_VERSION
-
+LABEL org.opencontainers.image.source="https://github.com/dimiplan/compilers"
 
 FROM production AS development
 
