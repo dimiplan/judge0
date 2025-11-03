@@ -42,7 +42,7 @@ USER judge0
 
 ENV JUDGE0_VERSION="1.13.1"
 LABEL version=$JUDGE0_VERSION
-LABEL org.opencontainers.image.source="https://github.com/dimiplan/compilers"
+LABEL org.opencontainers.image.source="https://github.com/dimiplan/judge0"
 
 FROM production AS development
 
