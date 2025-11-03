@@ -40,7 +40,7 @@ RUN useradd -u 1000 -m -r judge0 && \
 
 USER judge0
 
-ENV JUDGE0_VERSION="1.13.1"
+ENV JUDGE0_VERSION="1.14.1"
 LABEL version=$JUDGE0_VERSION
 LABEL org.opencontainers.image.source="https://github.com/dimiplan/judge0"
 
