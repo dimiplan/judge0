@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'logger'
+require 'mutex_m'
 require "rails"
 require "active_model/railtie"
 require "active_job/railtie"

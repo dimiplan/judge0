@@ -129,6 +129,7 @@ GEM
       bigdecimal (~> 3.1)
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
+    mutex_m (0.3.0)
     net-imap (0.5.12)
       date
       net-protocol
@@ -273,6 +274,8 @@ DEPENDENCIES
   enumerations (~> 2.3)
   httparty (~> 0.21)
   listen (~> 3.2)
+  logger
+  mutex_m (~> 0.3.0)
   pg (~> 1.2)
   pry-byebug (~> 3.9)
   pry-rails (~> 0.3)
