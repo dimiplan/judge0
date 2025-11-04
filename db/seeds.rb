@@ -1,4 +1,3 @@
-require_relative 'languages/archived'
 require_relative 'languages/active'
 
 ActiveRecord::Base.transaction do
