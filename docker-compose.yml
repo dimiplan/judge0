@@ -7,6 +7,8 @@ x-logging: &default-logging
 services:
   server:
     image: ghcr.io/dimiplan/judge0:latest
+    command: ["./scripts/server"]
+    env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
     ports:
@@ -14,10 +16,13 @@ services:
     privileged: true
     <<: *default-logging
     restart: always
+    environment:
+      - BIND=0.0.0.0
 
   worker:
     image: ghcr.io/dimiplan/judge0:latest
     command: ["./scripts/workers"]
+    env_file: judge0.conf
     volumes:
       - ./judge0.conf:/judge0.conf:ro
     privileged: true
