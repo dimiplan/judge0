@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem "mutex_m", "~> 0.3.0"
 gem 'logger'
+gem 'irb'
+gem 'benchmark'
+gem 'reline'
 gem 'rails', '~> 6.1'
 gem 'pg', '~> 1.2'
 
