@@ -307,7 +307,7 @@ class IsolateJob < ApplicationJob
   end
 
   def fix_permissions
-    `sudo chown -R $(whoami): #{boxdir}`
+    `sudo chown -R $(whoami): #{boxdir}` if Dir.exist?(boxdir)
   end
 
   def call_callback
