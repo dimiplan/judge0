@@ -54,7 +54,13 @@ class IsolateJob < ApplicationJob
   def initialize_workdir
     @box_id = submission.id%2147483647
     @cgroups = (!submission.enable_per_process_and_thread_time_limit || !submission.enable_per_process_and_thread_memory_limit) ? "--cg" : ""
-    @workdir = `isolate #{cgroups} -b #{box_id} --init`.chomp
+    @workdir = `isolate #{cgroups} -b #{box_id} --init 2>&1`.chomp
+    
+    # Verify isolate initialization succeeded
+    unless Dir.exist?(workdir) && File.directory?(workdir)
+      raise "Isolate initialization failed for box #{box_id}. Output: #{workdir}"
+    end
+    
     @boxdir = workdir + "/box"
     @tmpdir = workdir + "/tmp"
     @source_file = boxdir + "/" + submission.language.source_file.to_s
